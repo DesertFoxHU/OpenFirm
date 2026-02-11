@@ -25,21 +25,37 @@ namespace OpenFirm.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddTrade(Trade newTrade)
+        public IActionResult RecordClosedTrade(Trade newTrade)
         {
             var account = _context.Accounts.FirstOrDefault(a => a.Id == newTrade.AccountId);
 
             if (account == null)
             {
-                return NotFound("Account not found.");
+                return NotFound(new { message = "Account not found."});
             }
 
             if(account.Status == AccountStatus.Failed)
             {
-                return BadRequest("This account is failed.");
+                return BadRequest(new { message = "This account is failed." });
             }
 
-            return Ok("");
+            account.Balance += newTrade.Profit;
+            decimal maxLoss = account.InitialBalance * 0.9m;
+
+            _context.Trades.Add(newTrade);
+            _context.SaveChanges();
+
+            if (account.Balance < maxLoss)
+            {
+                account.Status = AccountStatus.Failed;
+                return Ok(new { message = "Trade recorder.", currentBalance = account.Balance, status = "Failed"});
+            }
+
+            return Ok(new { 
+                message = "Trade executed successfully.",
+                newBalance = account.Balance,
+                status = account.Status.ToString()
+            });
         }
     }
 }
