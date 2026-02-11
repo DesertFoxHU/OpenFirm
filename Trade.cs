@@ -8,8 +8,8 @@ namespace OpenFirm
         public int AccountId { get; set; }
         public string Symbol { get; set; }
         public string Direction { get; set; }
-        public double LotSize { get; set; }
-        public double Profit { get; set; }
+        public decimal LotSize { get; set; }
+        public decimal Profit { get; set; }
         public DateTime Date { get; set; } = DateTime.UtcNow;
     }
 }
