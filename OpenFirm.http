@@ -1,6 +1,0 @@
-@OpenFirm_HostAddress = http://localhost:5076
-
-GET {{OpenFirm_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

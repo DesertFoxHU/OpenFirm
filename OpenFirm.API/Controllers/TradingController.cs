@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace OpenFirm.Controllers
+namespace OpenFirm.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

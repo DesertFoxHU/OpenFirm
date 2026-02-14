@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace OpenFirm.Migrations
+namespace OpenFirm.API.Migrations
 {
     /// <inheritdoc />
     public partial class RevertToDecimal : Migration

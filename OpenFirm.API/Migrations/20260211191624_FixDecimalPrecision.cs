@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace OpenFirm.Migrations
+namespace OpenFirm.API.Migrations
 {
     /// <inheritdoc />
     public partial class FixDecimalPrecision : Migration
