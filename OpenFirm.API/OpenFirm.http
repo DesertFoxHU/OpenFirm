@@ -1,0 +1,6 @@
+@OpenFirm.API_HostAddress = http://localhost:5076
+
+GET {{OpenFirm.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

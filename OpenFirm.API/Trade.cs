@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace OpenFirm
+namespace OpenFirm.API
 {
     public class Trade
     {

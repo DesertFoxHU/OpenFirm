@@ -5,15 +5,15 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using OpenFirm;
+using OpenFirm.API;
 
 #nullable disable
 
-namespace OpenFirm.Migrations
+namespace OpenFirm.API.Migrations
 {
     [DbContext(typeof(PropFirmContext))]
-    [Migration("20260211190347_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20260211191329_RevertToDecimal")]
+    partial class RevertToDecimal
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,7 +25,7 @@ namespace OpenFirm.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("OpenFirm.Account", b =>
+            modelBuilder.Entity("OpenFirm.API.Account", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -51,7 +51,7 @@ namespace OpenFirm.Migrations
                     b.ToTable("Accounts");
                 });
 
-            modelBuilder.Entity("OpenFirm.Trade", b =>
+            modelBuilder.Entity("OpenFirm.API.Trade", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -69,8 +69,8 @@ namespace OpenFirm.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("LotSize")
-                        .HasColumnType("float");
+                    b.Property<decimal>("LotSize")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("Profit")
                         .HasColumnType("decimal(18,2)");

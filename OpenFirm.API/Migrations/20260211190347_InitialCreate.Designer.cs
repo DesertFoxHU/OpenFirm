@@ -5,15 +5,15 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using OpenFirm;
+using OpenFirm.API;
 
 #nullable disable
 
-namespace OpenFirm.Migrations
+namespace OpenFirm.API.Migrations
 {
     [DbContext(typeof(PropFirmContext))]
-    [Migration("20260211191624_FixDecimalPrecision")]
-    partial class FixDecimalPrecision
+    [Migration("20260211190347_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,7 +25,7 @@ namespace OpenFirm.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("OpenFirm.Account", b =>
+            modelBuilder.Entity("OpenFirm.API.Account", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -34,12 +34,10 @@ namespace OpenFirm.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<decimal>("Balance")
-                        .HasPrecision(18, 4)
-                        .HasColumnType("decimal(18,4)");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("InitialBalance")
-                        .HasPrecision(18, 4)
-                        .HasColumnType("decimal(18,4)");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
@@ -53,7 +51,7 @@ namespace OpenFirm.Migrations
                     b.ToTable("Accounts");
                 });
 
-            modelBuilder.Entity("OpenFirm.Trade", b =>
+            modelBuilder.Entity("OpenFirm.API.Trade", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -71,13 +69,11 @@ namespace OpenFirm.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("LotSize")
-                        .HasPrecision(18, 4)
-                        .HasColumnType("decimal(18,4)");
+                    b.Property<double>("LotSize")
+                        .HasColumnType("float");
 
                     b.Property<decimal>("Profit")
-                        .HasPrecision(18, 4)
-                        .HasColumnType("decimal(18,4)");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Symbol")
                         .IsRequired()

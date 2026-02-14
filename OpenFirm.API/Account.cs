@@ -1,4 +1,4 @@
-﻿namespace OpenFirm
+﻿namespace OpenFirm.API
 {
     public class Account
     {

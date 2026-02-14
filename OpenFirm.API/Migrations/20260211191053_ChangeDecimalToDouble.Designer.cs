@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using OpenFirm;
+using OpenFirm.API;
 
 #nullable disable
 
-namespace OpenFirm.Migrations
+namespace OpenFirm.API.Migrations
 {
     [DbContext(typeof(PropFirmContext))]
     [Migration("20260211191053_ChangeDecimalToDouble")]
@@ -25,7 +25,7 @@ namespace OpenFirm.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("OpenFirm.Account", b =>
+            modelBuilder.Entity("OpenFirm.API.Account", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -51,7 +51,7 @@ namespace OpenFirm.Migrations
                     b.ToTable("Accounts");
                 });
 
-            modelBuilder.Entity("OpenFirm.Trade", b =>
+            modelBuilder.Entity("OpenFirm.API.Trade", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
